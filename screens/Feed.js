@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import {Text, View, StyleSheet, Platform} from 'react-native';
+import {Text, View, StyleSheet, Platform, TouchableOpacity} from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+
+import PostCard from './PostCard';
 
 export default class Feed extends React.Component {
     render() {
@@ -19,6 +21,15 @@ export default class Feed extends React.Component {
                 <View style={styles.cardContainer}>
                     <FlatList keyExtractor={this.keyExtractor} data={posts} renderItem={this.renderItem} />
                 </View>
+                <TouchableOpacity
+                onPress={
+                    renderItem = ({item: post}) => {
+                        return <PostCard post={post} navigation={this.props.navigation} />;
+                    }
+                }
+                >
+                    
+                </TouchableOpacity>
             </View>
         );
     }
