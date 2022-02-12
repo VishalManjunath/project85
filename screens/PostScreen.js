@@ -2,12 +2,47 @@ import * as React from 'react';
 import {View, Text, StyleSheet, Image, SafeAreaView} from 'react-native';
 
 export default class PostScreen extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        }
+    }
+
+    componentDidMount () {
+
+    }
+
     render() {
-        return(
-            <View>
-                <Text>Post Screen</Text>
-            </View>
-        );
+
+        if (!this.props.route.params) {
+            this.props.navigation.navigate('Home')
+        } else{
+            return(
+                <View style={styles.container}>
+                    <View style={styles.cardContainer}>
+                    <View style={styles.authorContainer}>
+                        <View style={styles.authorImageCntainer}>
+                            <Image source={require('../assetss/profile_img.png')} style={styles.profileImage}></Image>
+                        </View>
+                        <View style={styles.authorNameContainer}>
+                            <Text style={styles.authorNameText}>{this.props.post.author}</Text>
+                        </View>
+                    </View>
+                    <Image source={require('../assetss/post.jpeg')} style={styles.postImage} />
+                    <View style={styles.captionContainer}>
+                        <Text style={styles.captionText}>{this.props.post.caption}</Text>
+                    </View>
+                    <View style={styles.actionContainer}>
+                        <View style={styles.likeButton}>
+                            <Ionicons name={'heart'} size={RFValue(30)} color={'white'} />
+                            <Text style={styles.likeText}>12K</Text>
+                        </View>
+                    </View>
+                </View>
+                </View>
+            );
+        }
     }
 }
 
